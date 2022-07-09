@@ -1,7 +1,7 @@
 import dotenv from 'dotenv'
 import axios from 'axios'
-import PostgresCon from './postgres.connector.js';
-import RequestToken from './oauthtoken.js';
+import PostgresCon from '../postgres.connector.js';
+import RequestToken from '../oauthtoken.js';
 
 dotenv.config();
 
