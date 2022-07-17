@@ -5,11 +5,6 @@ import RequestToken from '../oauthtoken.js';
 
 dotenv.config();
 
-const sleep = (delay) => {
-    var start = new Date().getTime();
-    while (new Date().getTime() < start + delay);
-}
-
 const scrape = async () => {
     const pool = new PostgresCon('warcraft').pool;
     const token = await RequestToken(process.env.BNETID,process.env.BNETSECRET)
@@ -18,7 +13,6 @@ const scrape = async () => {
     pool.connect(async (err, client, done) => {
         do {
             let url = `https://us.api.blizzard.com/data/wow/search/item?namespace=static-us&orderby=id&_pageSize=1000&id=[${startingItem},]&_page=1&access_token=${token}`
-            sleep(3000);
             const response = await axios.get(url);
             items = response.data.results;
             if(items.length > 0){
